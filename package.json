@@ -1,0 +1,27 @@
+{
+  "name": "agile-poker",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "firebase": "^3.3.0",
+    "react-redux": "^4.4.5",
+    "react-scripts": "0.4.1",
+    "redux": "^3.6.0",
+    "redux-actions": "^0.12.0",
+    "redux-saga": "^0.11.1",
+    "standard": "^8.0.0"
+  },
+  "dependencies": {
+    "react": "^15.3.1",
+    "react-dom": "^15.3.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "./node_modules/react-scripts/config/eslint.js"
+  }
+}
