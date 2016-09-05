@@ -1,0 +1,4 @@
+// auth
+export AUTH_OPEN: 'AUTH_OPEN';
+export AUTH_LOGIN: 'AUTH_LOGIN';
+export AUTH_LOGOUT: 'AUTH_LOGOUT';
