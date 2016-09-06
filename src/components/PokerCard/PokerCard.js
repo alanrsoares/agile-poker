@@ -1,8 +1,8 @@
 import React from 'react';
 import './PokerCard.css';
 
-const PokerCard = ({ children }) => (
-  <div className="poker-card">
+const PokerCard = ({ width, height, children }) => (
+  <div className="poker-card" style={{ width, height }}>
     <div className="poker-card-body">
       {children}
     </div>
