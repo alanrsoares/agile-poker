@@ -22,6 +22,8 @@ class App extends Component {
         </Flip>
 
         <button className="button primary" onClick={() => this.props.actions.toggleFlip()}>flip card</button>
+
+        <button className="button primary" onClick={() => this.props.actions.authOpen()}>open auth</button>
       </div>
     )
   }

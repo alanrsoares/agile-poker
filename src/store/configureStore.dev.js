@@ -1,18 +1,20 @@
-import { createStore, compose, applyMiddleware } from 'redux';
-import sagaMiddleware from 'redux-saga';
-import rootReducer from '../reducers';
-import rootSaga from '../sagas/index';
+import { createStore, compose, applyMiddleware } from 'redux'
+import createSagaMiddleWare from 'redux-saga'
+import rootReducer from '../reducers'
+import rootSaga from '../sagas/index'
 
-const nextRootReducer = require('../reducers/index').default;
+const nextRootReducer = require('../reducers/index').default
+
+const sagaMiddleware = createSagaMiddleWare()
 
 const finalCreateStore = compose(
-	applyMiddleware(sagaMiddleware(rootSaga)),
+	applyMiddleware(sagaMiddleware),
 	window.devToolsExtension ? window.devToolsExtension() : f => f
 )(createStore);
 
 export default function configureStore(initialState) {
-	const redStyle = 'height: 40px; color: #f6534e; font-size: large;';
-	const blueStyle = 'height: 40px; color: #2baaed; ';
+	const redStyle = 'height: 40px; color: #f6534e; font-size: large;'
+	const blueStyle = 'height: 40px; color: #2baaed; '
 
 	if (!window.devToolsExtension) {
 		/*	eslint no-console: 0 */
@@ -22,13 +24,15 @@ export default function configureStore(initialState) {
 			`${blueStyle}font-size: x-small;`);
 	}
 
-	const store = finalCreateStore(rootReducer, initialState);
+	const store = finalCreateStore(rootReducer, initialState)
+
+	sagaMiddleware.run(rootSaga)
 
 	if (module.hot) {
 		module.hot.accept('../reducers', () => {
-			store.replaceReducer(nextRootReducer);
-		});
+			store.replaceReducer(nextRootReducer)
+		})
 	}
 
-	return store;
+	return store
 }
