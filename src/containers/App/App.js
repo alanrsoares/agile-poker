@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from 'react'
+import './App.css'
 
-import Flip from '../../components/Flip';
-import PokerCard from '../../components/PokerCard';
+import Flip from '../../components/Flip'
+import PokerCard from '../../components/PokerCard'
 
 class App extends Component {
   render() {
@@ -15,8 +15,8 @@ class App extends Component {
           <PokerCard>Bar</PokerCard>
         </Flip>
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
