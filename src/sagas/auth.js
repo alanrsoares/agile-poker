@@ -20,7 +20,6 @@ function signInWithEmailAndPassword (email, password) {
 
 function* checkAuth() {
   if (auth.currentUser) {
-    console.log(auth.currentUser)
     yield put(actions.authLogin(auth.currentUser))
   }
 }
