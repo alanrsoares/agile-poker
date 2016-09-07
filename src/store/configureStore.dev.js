@@ -1,4 +1,6 @@
 import { createStore, compose, applyMiddleware } from 'redux'
+import { browserHistory } from 'react-router'
+import { routerMiddleware } from 'react-router-redux'
 import createSagaMiddleWare from 'redux-saga'
 import rootReducer from '../reducers'
 import rootSaga from '../sagas/index'
@@ -7,8 +9,13 @@ const nextRootReducer = require('../reducers/index').default
 
 const sagaMiddleware = createSagaMiddleWare()
 
+console.log(routerMiddleware)
+
 const finalCreateStore = compose(
-	applyMiddleware(sagaMiddleware),
+	applyMiddleware(
+		sagaMiddleware,
+		routerMiddleware(browserHistory)
+	),
 	window.devToolsExtension ? window.devToolsExtension() : f => f
 )(createStore);
 

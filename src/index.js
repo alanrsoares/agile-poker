@@ -13,8 +13,6 @@ import SignIn from './containers/SignIn'
 
 import configureStore from './store'
 
-import { checkAuth } from './helpers/auth'
-
 const store = configureStore()
 
 const history = syncHistoryWithStore(browserHistory, store)
@@ -23,7 +21,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
       <Route path="/" component={AppLayout}>
-        <IndexRoute component={App} onEnter={checkAuth} />
+        <IndexRoute component={App} />
         <Route path="/signin" component={SignIn} />
       </Route>
     </Router>
