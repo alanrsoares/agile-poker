@@ -7,21 +7,29 @@ import * as actionTypes from '../constants/action-types'
 import { auth } from '../lib/firebaseApp'
 
 function signInWithEmailAndPassword (email, password) {
-  return new Promise((success, reject) => {
-    auth.signInWithEmailAndPassword(email, password)
-        .then(success)
+  const provider = new firebase.auth.GoogleAuthProvider()
+
+  const promiseBody = (resolve, reject) => {
+    auth.signInWithRedirect(provider)
+        .then(resolve)
         .catch(reject)
-  })
+  }
+
+  return new Promise(promiseBody)
 }
 
 function* openAuth() {
+  if (auth.currentUser) {
+    console.log(auth.currentUser)
+    yield put(actions.authLogin(auth.currentUser))
+    return
+  }
+
 	try {
     yield put(actions.listenToAuth())
-    const authData = yield call(signInWithEmailAndPassword, 'test@email.com', 'some-password')
+    const authData = yield call(signInWithEmailAndPassword)
     yield put(actions.authLogin(authData))
   } catch (e) {
-    console.error(e)
-    //yield put(actions.feedbackDisplayError(e))
     yield put(actions.authLogout())
   }
 }

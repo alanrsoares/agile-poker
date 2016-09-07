@@ -11,7 +11,6 @@ import PokerCard from '../../components/PokerCard'
 
 class App extends Component {
   render() {
-    console.log(this.props)
     return (
       <div className="App">
         AGILE POKER
@@ -24,6 +23,10 @@ class App extends Component {
         <button className="button primary" onClick={() => this.props.actions.toggleFlip()}>flip card</button>
 
         <button className="button primary" onClick={() => this.props.actions.authOpen()}>open auth</button>
+
+        <div>
+          {JSON.stringify(this.props.auth)}
+        </div>
       </div>
     )
   }

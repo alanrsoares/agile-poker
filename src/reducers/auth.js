@@ -15,9 +15,11 @@ const actionHandlers = {
     username: 'guest',
     uid: null
   }),
-  [types.AUTH_LOGIN]: (state, { payload }) => ({
-    ...state,
-    ...payload
+  [types.AUTH_LOGIN]: (state, { payload: { username, uid, email } }) => ({
+    status: auth.AUTH_LOGGED_IN,
+    username,
+    uid,
+    email
   }),
   [types.AUTH_LOGOUT]: () => INITIAL_STATE
 }
