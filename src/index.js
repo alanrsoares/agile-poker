@@ -4,7 +4,11 @@ import { Provider } from 'react-redux'
 import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 
+import actions from './actions'
+
+import AppLayout from './layouts/App'
 import App from './containers/App'
+
 import SignIn from './containers/SignIn'
 
 import configureStore from './store'
@@ -18,8 +22,8 @@ const history = syncHistoryWithStore(browserHistory, store)
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
-      <Route path="/">
-        <IndexRoute component={App} onEnter={checkAuth} />
+      <Route path="/" component={AppLayout}>
+        <IndexRoute component={App} onEnter={() => store.dispatch(actions.authCheck())} />
         <Route path="/signin" component={SignIn} />
       </Route>
     </Router>

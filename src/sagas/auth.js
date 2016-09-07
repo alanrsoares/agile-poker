@@ -7,7 +7,7 @@ import * as actionTypes from '../constants/action-types'
 import { auth } from '../lib/firebaseApp'
 
 function signInWithEmailAndPassword (email, password) {
-  const provider = new firebase.auth.GoogleAuthProvider()
+
 
   const promiseBody = (resolve, reject) => {
     auth.signInWithRedirect(provider)
@@ -19,21 +19,20 @@ function signInWithEmailAndPassword (email, password) {
 }
 
 function* checkAuth() {
-  if (auth.currentUser) {
-    yield put(actions.authLogin(auth.currentUser))
-  }
-}
-
-function* openAuth() {
+  console.log('checkAuth', auth)
   if (auth.currentUser) {
     console.log(auth.currentUser)
     yield put(actions.authLogin(auth.currentUser))
     return
   }
+}
 
-	try {
-    const authData = yield call(signInWithEmailAndPassword)
-    yield put(actions.authLogin(authData))
+function* openAuth() {
+  const provider = new firebase.auth.GoogleAuthProvider()
+
+  try {
+    const authData = yield call([auth, auth.signInWithPopup], provider)
+    yield put(actions.authLogin(authData.user))
   } catch (e) {
     yield put(actions.authLogout())
   }
