@@ -1,9 +1,10 @@
 import { takeEvery } from 'redux-saga'
-import { push } from 'react-router-redux'
-import { put, call } from 'redux-saga/effects'
+import { push, replace } from 'react-router-redux'
+import { put, call, select } from 'redux-saga/effects'
 import * as firebase from 'firebase'
 
 import actions from '../actions'
+import * as selectors from '../selectors'
 import * as actionTypes from '../constants/action-types'
 import { auth } from '../lib/firebaseApp'
 

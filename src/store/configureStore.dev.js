@@ -6,6 +6,8 @@ import createSagaMiddleWare from 'redux-saga'
 import rootReducer from '../reducers'
 import rootSaga from '../sagas/index'
 
+const nextRootReducer = require('../reducers').default
+
 const sagaMiddleware = createSagaMiddleWare()
 
 const finalCreateStore = compose(
@@ -34,7 +36,7 @@ export default function configureStore(initialState) {
 
 	if (module.hot) {
 		module.hot.accept('../reducers', () => {
-			store.replaceReducer(require('../reducers/index').default)
+			store.replaceReducer(nextRootReducer)
 		})
 	}
 

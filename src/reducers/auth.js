@@ -26,3 +26,6 @@ const actionHandlers = {
 }
 
 export default handleActions(actionHandlers, INITIAL_STATE)
+
+// selectors
+export const isUserLoggedIn = state => state.status === auth.AUTH_LOGGED_IN
