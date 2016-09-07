@@ -18,6 +18,13 @@ function signInWithEmailAndPassword (email, password) {
   return new Promise(promiseBody)
 }
 
+function* checkAuth() {
+  if (auth.currentUser) {
+    console.log(auth.currentUser)
+    yield put(actions.authLogin(auth.currentUser))
+  }
+}
+
 function* openAuth() {
   if (auth.currentUser) {
     console.log(auth.currentUser)
@@ -26,7 +33,6 @@ function* openAuth() {
   }
 
 	try {
-    yield put(actions.listenToAuth())
     const authData = yield call(signInWithEmailAndPassword)
     yield put(actions.authLogin(authData))
   } catch (e) {
@@ -36,6 +42,7 @@ function* openAuth() {
 
 export function* authWatcher() {
 	yield [
-		takeEvery(actionTypes.AUTH_OPEN, openAuth)
+		takeEvery(actionTypes.AUTH_OPEN, openAuth),
+    takeEvery(actionTypes.AUTH_CHECK, checkAuth)
 	]
 }

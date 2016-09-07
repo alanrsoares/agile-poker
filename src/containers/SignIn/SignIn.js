@@ -4,23 +4,14 @@ import { connect } from 'react-redux'
 
 import actionsMap from '../../actions'
 
-import './App.css'
-
 import Flip from '../../components/Flip'
 import PokerCard from '../../components/PokerCard'
 
-class App extends Component {
+class SignIn extends Component {
   render() {
     return (
-      <div className="App">
-        AGILE POKER
-
-        <Flip width={150} height={200} flip={this.props.flip}>
-          <PokerCard width={150} height={200}>Boo</PokerCard>
-          <PokerCard width={150} height={200}></PokerCard>
-        </Flip>
-
-        <button className="button primary" onClick={() => this.props.actions.toggleFlip()}>flip card</button>
+      <div className="SignIn">
+        SignIn
 
         <button className="button primary" onClick={() => this.props.actions.authOpen()}>open auth</button>
 
@@ -35,4 +26,4 @@ class App extends Component {
 export default connect(
   state => ({ ...state }),
   dispatch => ({ actions: bindActionCreators(actionsMap, dispatch) })
-)(App)
+)(SignIn)

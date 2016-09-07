@@ -1,25 +1,26 @@
 import React from 'react'
-import { render } from 'react-dom'
+import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 
 import App from './containers/App'
+import SignIn from './containers/SignIn'
+
 import configureStore from './store'
+
+import { checkAuth } from './helpers/auth'
 
 const store = configureStore()
 
-const checkAuthIndex = (...args) => {
-  console.log({ checkAuthIndex: args })
-}
-
 const history = syncHistoryWithStore(browserHistory, store)
 
-render(
+ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
       <Route path="/">
-        <IndexRoute component={App} onEnter={checkAuthIndex} />
+        <IndexRoute component={App} onEnter={checkAuth} />
+        <Route path="/signin" component={SignIn} />
       </Route>
     </Router>
   </Provider>,
