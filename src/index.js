@@ -23,7 +23,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
       <Route path="/" component={AppLayout}>
-        <IndexRoute component={App} onEnter={() => store.dispatch(actions.authCheck())} />
+        <IndexRoute component={App} onEnter={checkAuth} />
         <Route path="/signin" component={SignIn} />
       </Route>
     </Router>
