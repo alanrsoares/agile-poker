@@ -6,17 +6,16 @@ import actionsMap from '../../actions'
 
 import './App.css'
 
-import Flip from '../../components/Flip'
+import FlipCard from '../../components/FlipCard'
 import PokerCard from '../../components/PokerCard'
 
 const App = ({ actions, flip, auth }) => (
   <div className="App">
     AGILE POKER
 
-    <Flip width={150} height={200} flip={flip}>
-      <PokerCard width={150} height={200}>Boo</PokerCard>
-      <PokerCard width={150} height={200}></PokerCard>
-    </Flip>
+    <FlipCard width={150} height={200} flip={flip}>
+      Boo
+    </FlipCard>
 
     <button className="button primary" onClick={() => actions.toggleFlip()}>flip card</button>
 

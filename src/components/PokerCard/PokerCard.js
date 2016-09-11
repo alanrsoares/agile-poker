@@ -1,5 +1,5 @@
-import React from 'react';
-import './PokerCard.css';
+import React from 'react'
+import './PokerCard.css'
 
 const PokerCard = ({ width, height, children }) => (
   <div className="poker-card" style={{ width, height }}>
@@ -7,6 +7,6 @@ const PokerCard = ({ width, height, children }) => (
       {children}
     </div>
   </div>
-);
+)
 
-export default PokerCard;
+export default PokerCard
