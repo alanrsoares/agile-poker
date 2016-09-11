@@ -13,7 +13,9 @@ class SignIn extends Component {
       <div className="SignIn">
         SignIn
 
-        <button className="button primary" onClick={() => this.props.actions.authOpen()}>open auth</button>
+        <button className="button primary" onClick={() => this.props.actions.authOpen()}>
+          open auth
+        </button>
 
         <div>
           {JSON.stringify(this.props.auth)}

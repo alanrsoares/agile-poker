@@ -18,12 +18,6 @@ const App = ({ actions, flip, auth }) => (
     </FlipCard>
 
     <button className="button primary" onClick={() => actions.toggleFlip()}>flip card</button>
-
-    <button className="button primary" onClick={() => actions.authOpen()}>open auth</button>
-
-    <div>
-      {JSON.stringify(auth)}
-    </div>
   </div>
 )
 
