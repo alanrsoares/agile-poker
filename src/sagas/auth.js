@@ -4,10 +4,13 @@ import { put, call, select, fork } from 'redux-saga/effects'
 import * as firebase from 'firebase'
 
 import actions from '../actions'
+import * as selectors from '../selectors'
 import * as actionTypes from '../constants/action-types'
 import { auth } from '../lib/firebaseApp'
 
 function* openAuth({ payload: provider = new firebase.auth.GoogleAuthProvider() }) {
+  yield fork(requireUnauth)
+
   try {
     const authData = yield call([auth, auth.signInWithPopup], provider)
 
@@ -21,14 +24,6 @@ function* openAuth({ payload: provider = new firebase.auth.GoogleAuthProvider() 
   }
 }
 
-function* watchLocationChange({ payload }) {
-  if (payload.pathname in privateRoutes) {
-    yield fork(checkAuth)
-  }
-}
-
 export function* authWatcher() {
-	yield [
-		takeEvery(actionTypes.AUTH_OPEN, openAuth)
-	]
+	yield takeEvery(actionTypes.AUTH_OPEN, openAuth)
 }
