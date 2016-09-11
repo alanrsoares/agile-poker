@@ -1,13 +1,10 @@
-import React, { Component, PropTypes } from 'react'
+import React, { PureComponent } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import actionsMap from '../../actions'
 
-import Flip from '../../components/Flip'
-import PokerCard from '../../components/PokerCard'
-
-class SignIn extends Component {
+class SignIn extends PureComponent {
   render() {
     return (
       <div className="SignIn">

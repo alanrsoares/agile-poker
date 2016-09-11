@@ -1,31 +1,31 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import { Router, Route, IndexRoute, browserHistory } from 'react-router'
+import { Router, browserHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 
-import AppLayout from './layouts/App'
-import App from './containers/App'
-import SignIn from './containers/SignIn'
-import DashBoard from './containers/DashBoard'
-
 import configureStore from './store'
+import { getRoutes } from './routes'
+import { initAuth } from './lib/firebaseApp'
 
 const store = configureStore()
 
 const Root = ({ store }) => (
   <Provider store={store}>
-    <Router history={syncHistoryWithStore(browserHistory, store)}>
-      <Route path="/" component={AppLayout}>
-        <IndexRoute component={App} />
-        <Route path="/signin" component={SignIn} />
-        <Route path="/dashboard" component={DashBoard} />
-      </Route>
-    </Router>
+    <Router
+      history={syncHistoryWithStore(browserHistory, store)}
+      routes={getRoutes(store.getState)}
+    />
   </Provider>
 )
 
-ReactDOM.render(
-  <Root store={store} />,
-  document.getElementById('root')
-)
+const renderApp = () => {
+  ReactDOM.render(
+    <Root store={store} />,
+    document.getElementById('root')
+  )
+}
+
+initAuth(store.dispatch)
+  .then(renderApp)
+  .catch(e => console.error(e))

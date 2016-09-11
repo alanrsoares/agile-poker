@@ -4,21 +4,8 @@ import { put, call, select, fork } from 'redux-saga/effects'
 import * as firebase from 'firebase'
 
 import actions from '../actions'
-import * as selectors from '../selectors'
 import * as actionTypes from '../constants/action-types'
 import { auth } from '../lib/firebaseApp'
-
-const privateRoutes = {
-  '/dashboard': true
-}
-
-function* checkAuth() {
-  const isUserLoggedIn = yield select(selectors.isUserLoggedIn)
-
-  if (!isUserLoggedIn) {
-    yield put(push('/signin'))
-  }
-}
 
 function* openAuth({ payload: provider = new firebase.auth.GoogleAuthProvider() }) {
   try {
@@ -26,7 +13,7 @@ function* openAuth({ payload: provider = new firebase.auth.GoogleAuthProvider() 
 
     yield [
       put(actions.authLogin(authData.user)),
-      put(push('/'))
+      put(push('/dashboard'))
     ]
   } catch (e) {
     console.error(e)
@@ -42,7 +29,6 @@ function* watchLocationChange({ payload }) {
 
 export function* authWatcher() {
 	yield [
-		takeEvery(actionTypes.AUTH_OPEN, openAuth),
-    takeEvery('@@router/LOCATION_CHANGE', watchLocationChange)
+		takeEvery(actionTypes.AUTH_OPEN, openAuth)
 	]
 }
