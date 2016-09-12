@@ -4,7 +4,6 @@ import { put, call, select, fork } from 'redux-saga/effects'
 import * as firebase from 'firebase'
 
 import actions from '../actions'
-import * as selectors from '../selectors'
 import * as actionTypes from '../constants/action-types'
 import { auth } from '../lib/firebaseApp'
 
