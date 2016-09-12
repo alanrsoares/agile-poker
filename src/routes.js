@@ -1,5 +1,5 @@
 import { isAuthenticated } from './selectors'
-import AppLayout from './layouts/App'
+import AppLayout from './layouts/AppLayout'
 import App from './containers/App'
 import SignIn from './containers/SignIn'
 import DashBoard from './containers/DashBoard'

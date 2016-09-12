@@ -4,20 +4,21 @@ import { connect } from 'react-redux'
 
 import actionsMap from '../../actions'
 
-import './App.css'
-
 import FlipCard from '../../components/FlipCard'
-import PokerCard from '../../components/PokerCard'
 
-const App = ({ actions, flip, auth }) => (
+const App = ({ actions }) => (
   <div className="App">
-    AGILE POKER
-
-    <FlipCard width={150} height={200} flip={flip}>
-      Boo
-    </FlipCard>
-
-    <button className="button primary" onClick={() => actions.toggleFlip()}>flip card</button>
+    <section className="hero is-medium is-primary is-bold is-fullheight">
+      <div className="hero-body">
+        <div className="container">
+          <div className="columns is-vcentered">
+            <div className="column">
+              <p className="title">Hello</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 )
 
