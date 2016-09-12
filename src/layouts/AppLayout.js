@@ -1,6 +1,24 @@
 import React from 'react'
 import { Link } from 'react-router'
 
+const NavToggle = () => (
+  <span className="nav-toggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </span>
+)
+
+const NavItem = ({ to, children}) => (
+  <Link to={to} className="nav-item" activeClassName="is-active">
+    {children}
+  </Link>
+)
+
+const Icon = ({ type }) => (
+  <i className={`fa fa-${type}`}></i>
+)
+
 const AppLayout = ({ children }) => (
   <div>
     <section className="hero is-dark is-bold">
@@ -15,23 +33,19 @@ const AppLayout = ({ children }) => (
             <div className="nav-center">
               <a className="nav-item" href="https://github.com/alanrsoares/agile-poker">
                 <span className="icon">
-                  <i className="fa fa-github"></i>
+                  <Icon type="github" />
                 </span>
               </a>
             </div>
             <div className="nav-right nav-menu">
-              <Link to="/" className="nav-item" activeClassName="is-active">
+              <NavItem to="/">
                 Home
-              </Link>
-              <Link to="/dashboard" className="nav-item" activeClassName="is-active">
+              </NavItem>
+              <NavItem to="/dashboard">
                 Dashboard
-              </Link>
+              </NavItem>
             </div>
-            <span className="nav-toggle">
-              <span></span>
-              <span></span>
-              <span></span>
-            </span>
+            <NavToggle />
           </nav>
         </div>
       </div>
