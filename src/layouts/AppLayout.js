@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router'
 
+import './AppLayout.css'
+
 const NavToggle = () => (
   <span className="nav-toggle">
     <span></span>
@@ -21,7 +23,7 @@ const Icon = ({ type }) => (
 
 const AppLayout = ({ children }) => (
   <div>
-    <section className="hero is-dark is-bold">
+    <section className="hero is-dark is-bold is-fixed">
       <div className="hero-head">
         <div className="container">
           <nav className="nav">
@@ -50,7 +52,7 @@ const AppLayout = ({ children }) => (
         </div>
       </div>
     </section>
-    <section className="">
+    <section className="content">
       {children}
     </section>
   </div>
