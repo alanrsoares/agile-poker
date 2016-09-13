@@ -52,7 +52,7 @@ const AppLayout = ({ children }) => (
         </div>
       </div>
     </section>
-    <section className="content">
+    <section>
       {children}
     </section>
   </div>
