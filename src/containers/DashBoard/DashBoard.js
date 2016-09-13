@@ -1,7 +1,7 @@
 import React from 'react'
 
 const DashBoard = () => (
-  <div>
+  <div className="container">
     DashBoard
   </div>
 )

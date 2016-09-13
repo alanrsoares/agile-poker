@@ -3,30 +3,29 @@ import AppLayout from './layouts/AppLayout'
 import App from './containers/App'
 import SignIn from './containers/SignIn'
 import DashBoard from './containers/DashBoard'
+import Session from './containers/Session'
 
 export const paths = {
   ROOT: '/',
-  SIGN_IN: '/signin',
   HOME: '/',
-  DASH: '/dashboard'
+  DASHBOARD: '/dashboard',
+  SESSION: '/session/:id',
+  SIGN_IN: '/signin'
 }
 
-const requireAuth = getState => {
-  return (nextState, replace) => {
+const requireAuth = getState =>
+  (_, replace) => {
     if (!isAuthenticated(getState())) {
       replace(paths.SIGN_IN)
     }
   }
-}
 
-const requireUnauth = getState => {
-  return (nextState, replace) => {
+const requireUnauth = getState =>
+  (_, replace) => {
     if (isAuthenticated(getState())) {
-      replace(paths.DASH)
+      replace(paths.DASHBOARD)
     }
   }
-}
-
 
 export const getRoutes = getState => {
   return {
@@ -39,8 +38,13 @@ export const getRoutes = getState => {
         }
       },
       {
-        path: paths.DASH,
+        path: paths.DASHBOARD,
         component: DashBoard,
+        onEnter: requireAuth(getState)
+      },
+      {
+        path: paths.SESSION,
+        component: Session,
         onEnter: requireAuth(getState)
       },
       {
