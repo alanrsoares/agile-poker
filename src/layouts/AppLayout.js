@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router'
 
 import './AppLayout.css'
@@ -21,7 +22,15 @@ const Icon = ({ type }) => (
   <i className={`fa fa-${type}`}></i>
 )
 
-const AppLayout = ({ children }) => (
+const SignInButton = ({ status }) => (
+  <span className="nav-item">
+    <button className="button is-outlined is-light">
+      {status === 'AUTH_LOGGED_IN' ? 'LOG OUT' : 'SIGN IN'}
+    </button>
+  </span>
+)
+
+const AppLayout = ({ children, auth }) => (
   <div>
     <section className="hero is-dark is-bold is-fixed">
       <div className="hero-head">
@@ -46,6 +55,7 @@ const AppLayout = ({ children }) => (
               <NavItem to="/dashboard">
                 Dashboard
               </NavItem>
+              <SignInButton {...auth} />
             </div>
             <NavToggle />
           </nav>
@@ -58,4 +68,6 @@ const AppLayout = ({ children }) => (
   </div>
 )
 
-export default AppLayout
+export default connect(
+  state => ({ ...state })
+)(AppLayout)
