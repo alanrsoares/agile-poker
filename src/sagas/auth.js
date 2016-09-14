@@ -5,7 +5,7 @@ import * as firebase from 'firebase'
 
 import actions from '../actions'
 import * as actionTypes from '../constants/action-types'
-import { auth } from '../lib/firebaseApp'
+import { auth } from '../lib/firebase'
 
 function* openAuth({ payload: provider = new firebase.auth.GoogleAuthProvider() }) {
   try {

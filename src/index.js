@@ -6,7 +6,7 @@ import { syncHistoryWithStore } from 'react-router-redux'
 
 import configureStore from './store'
 import { getRoutes } from './routes'
-import { initAuth } from './lib/firebaseApp'
+import { initAuth } from './lib/firebase'
 
 const store = configureStore()
 
