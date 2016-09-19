@@ -3,12 +3,12 @@ import { browserHistory } from 'react-router'
 import { routerMiddleware } from 'react-router-redux'
 import createSagaMiddleWare from 'redux-saga'
 
-import reducers from '../reducers'
-import rootSaga from '../sagas/index'
+import reducers from './reducers'
+import rootSaga from './sagas'
 
 const sagaMiddleware = createSagaMiddleWare()
 
-export default function configureStore(initialState) {
+export function configureStore(initialState) {
 	let middleware = applyMiddleware(
 		sagaMiddleware,
 		routerMiddleware(browserHistory)

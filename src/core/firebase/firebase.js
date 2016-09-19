@@ -1,7 +1,7 @@
 import * as firebase from 'firebase'
 
 import actions from '../../actions'
-import config from './firebase-config'
+import * as config from './firebase-config'
 
 const app = firebase.initializeApp(config)
 
